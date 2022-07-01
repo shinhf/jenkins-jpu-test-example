@@ -1,0 +1,48 @@
+
+apply plugin: 'groovy'
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+buildscript {
+    repositories {
+        maven { url 'https://plugins.gradle.org/m2/'}
+          jcenter()
+    }
+    dependencies {
+        classpath 'com.adarshr:gradle-test-logger-plugin:3.1.0'
+    }
+}
+
+apply plugin: 'com.adarshr.test-logger'
+
+repositories {
+    maven { url 'https://repo.jenkins-ci.org/releases/' }
+    maven { url 'https://repo.jenkins-ci.org/public/' }
+    mavenCentral()
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all
+    implementation('org.codehaus.groovy:groovy-all:3.0.9')
+    implementation('com.cloudbees:groovy-cps:1.31')
+    //test
+    testImplementation("com.lesfurets:jenkins-pipeline-unit:1.14")
+    testImplementation('org.jenkins-ci.plugins:ansicolor:1.0.1')
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = []
+        }
+        groovy {
+            srcDirs = ['groovy']
+        }
+    }
+    test {
+        groovy {
+            srcDirs = ['test']
+        }
+    }
+}
