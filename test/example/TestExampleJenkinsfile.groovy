@@ -10,7 +10,7 @@ class TestExampleJenkinsfile extends DeclarativePipelineTest {
     }
 
     @Test
-    void imagerExamplePipeline() {
+    void testExamplePipeline() {
         //Arrange
         //Act
         runScript('groovy/example/Jenkinsfile')
